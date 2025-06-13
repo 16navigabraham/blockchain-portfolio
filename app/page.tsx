@@ -25,10 +25,12 @@ import { AnimatedCounter } from "@/components/animated-counter"
 import { InteractiveSkillCard } from "@/components/interactive-skill-card"
 import { InteractiveProjectCard } from "@/components/interactive-project-card"
 import { useEffect, useState, useRef } from "react"
+import Image from "next/image"
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0)
   const [activeSection, setActiveSection] = useState("About")
+  const [showPfp, setShowPfp] = useState(false) // NEW STATE
 
   // Section refs
   const sectionIds = ["about", "skills", "projects", "experience", "contact"]
@@ -87,8 +89,19 @@ export default function Portfolio() {
             <div
               className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center animate-pulse-glow transform hover:scale-110 transition-transform duration-500 cursor-pointer"
               style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+              onClick={() => setShowPfp((prev) => !prev)} // TOGGLE ON CLICK
             >
-              <Code className="w-16 h-16 text-white animate-bounce" />
+              {showPfp ? (
+                <Image
+                  src="/cat.png" // Replace with your actual image path in /public
+                  alt="Profile Picture"
+                  width={64}
+                  height={64}
+                  className="rounded-full w-16 h-16 object-cover"
+                />
+              ) : (
+                <Code className="w-16 h-16 text-white animate-bounce" />
+              )}
             </div>
             <h1 className="text-6xl font-bold text-gray-900 mb-4 animate-fade-in-up gradient-text">Adebanjo Abraham</h1>
             <h2 className="text-3xl text-gray-600 mb-6 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -98,8 +111,8 @@ export default function Portfolio() {
               className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 animate-fade-in-up"
               style={{ animationDelay: "0.4s" }}
             >
-              Building the future of decentralized applications with 1 year of experience in blockchain development,
-              smart contracts, and DeFi protocols.
+              Focused on building decentralized applications with passion and expertise in blockchain development,
+              smart contracts, and emerging Web3 technologies.
             </p>
             <div className="flex justify-center space-x-4 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
               <Button
@@ -266,12 +279,12 @@ export default function Portfolio() {
             <InteractiveProjectCard
               title="Meme Vibe"
               description="Farcaster Mini-app"
-              longDescription="Developed a decentralized mini application that allows users to easily create, share, and mint memes on Farcaster. Integrated a meme battle feature to drive user engagement and added NFT minting functionality for
-              onchain ownership."
+              longDescription="Developed a decentralized mini application that allows users to easily create, share, and mint memes on Farcaster. Integrated a meme battle feature to drive user engagement and added NFT minting functionality for onchain ownership."
               technologies={["Solidity", "Typescript", "Pinata", "javascript", "OpenZeppelin","CSS","Node.js","Farcaster Mini-App Framework"]}
               liveUrl="https://farcaster.xyz/miniapps/SE50u1CWD5fB/meme-vibe"
               stars={5}
               forks={5}
+              image="/MV.png"
             />
 
             {/* <InteractiveProjectCard
@@ -302,29 +315,29 @@ export default function Portfolio() {
           <div className="space-y-8">
             {[
               {
-                title: "Senior Blockchain Developer",
-                company: "DeFi Labs",
-                period: "2022 - Present",
+                title: "Developer",
+                company: "Base Batches",
+                period: "2025 - Present",
                 description:
-                  "Lead development of multiple DeFi protocols with over $50M TVL. Architected smart contract systems for yield farming, liquidity mining, and automated market making.",
+                  "Lead development of a farcaster mini-app for meme creation and sharing. Implemented NFT minting and meme battle features to enhance user engagement.",
                 badges: ["Solidity", "DeFi", "Smart Contracts", "Team Leadership"],
               },
-              {
-                title: "Blockchain Developer",
-                company: "CryptoTech Solutions",
-                period: "2020 - 2022",
-                description:
-                  "Developed NFT marketplaces and gaming platforms. Implemented cross-chain bridges and optimized gas efficiency for high-volume applications.",
-                badges: ["NFTs", "Cross-chain", "Gaming", "Gas Optimization"],
-              },
-              {
-                title: "Full Stack Developer",
-                company: "Web3 Startup",
-                period: "2019 - 2020",
-                description:
-                  "Built the foundation of Web3 knowledge while developing traditional web applications. Transitioned to blockchain development and smart contract programming.",
-                badges: ["React", "Node.js", "Web3 Integration", "Learning"],
-              },
+              // {
+              //   title: "Blockchain Developer",
+              //   company: "CryptoTech Solutions",
+              //   period: "2020 - 2022",
+              //   description:
+              //     "Developed NFT marketplaces and gaming platforms. Implemented cross-chain bridges and optimized gas efficiency for high-volume applications.",
+              //   badges: ["NFTs", "Cross-chain", "Gaming", "Gas Optimization"],
+              // },
+              // {
+              //   title: "Full Stack Developer",
+              //   company: "Web3 Startup",
+              //   period: "2019 - 2020",
+              //   description:
+              //     "Built the foundation of Web3 knowledge while developing traditional web applications. Transitioned to blockchain development and smart contract programming.",
+              //   badges: ["React", "Node.js", "Web3 Integration", "Learning"],
+              // },
             ].map((job, index) => (
               <Card
                 key={index}
@@ -370,10 +383,9 @@ export default function Portfolio() {
       >
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8">Let's Build the Future Together</h2>
-          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
-            I'm always interested in discussing new opportunities, innovative projects, and collaborations in the
-            blockchain space.
-          </p>
+            <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+            Currently seeking opportunities to leverage my expertise in smart contract development, DeFi protocols, and Web3 infrastructure. Open to discussing technical collaborations and innovative blockchain solutions.
+            </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
             <div className="flex items-center transform hover:scale-105 transition-transform duration-300">
               <Mail className="w-5 h-5 text-blue-200 mr-2" />
@@ -381,7 +393,7 @@ export default function Portfolio() {
             </div>
             <div className="flex items-center transform hover:scale-105 transition-transform duration-300">
               <MapPin className="w-5 h-5 text-blue-200 mr-2" />
-              <span>FUTA,Akure</span>
+              <span>Akure, Nigeria</span>
             </div>
           </div>
           <div className="flex justify-center space-x-4">
@@ -432,7 +444,7 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
-          <p>&copy; 2025 Adebanjo Abraham. </p>
+          <p>&copy; {new Date().getFullYear()} Adebanjo Abraham. </p>
         </div>
       </footer>
     </div>

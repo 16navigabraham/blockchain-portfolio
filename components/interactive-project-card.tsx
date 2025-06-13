@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Star, GitFork } from "lucide-react"
 import { useState } from "react"
+import Image from "next/image"
 
 interface ProjectCardProps {
   title: string
@@ -15,7 +16,7 @@ interface ProjectCardProps {
   liveUrl?: string
   stars?: number
   forks?: number
-  image?: string
+  image?: string // This is the image URL
 }
 
 export function InteractiveProjectCard({
@@ -66,7 +67,17 @@ export function InteractiveProjectCard({
           <CardContent>
             <div className="space-y-4">
               <div className="h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
-                <div className="text-4xl opacity-20">🚀</div>
+                {image && typeof image === "string" && image.trim() !== "" ? (
+                  <Image
+                    src={image}
+                    alt={title}
+                    width={120}
+                    height={80}
+                    className="object-contain rounded shadow"
+                  />
+                ) : (
+                  <div className="text-4xl opacity-20">🚀</div>
+                )}
               </div>
               <div className="flex flex-wrap gap-2">
                 {technologies.slice(0, 3).map((tech, index) => (
