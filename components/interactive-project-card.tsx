@@ -114,25 +114,22 @@ export function InteractiveProjectCard({
                 ))}
               </div>
 
-              <div className="flex space-x-2 pt-2">
-                {githubUrl && (
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-                  >
-                    <Github className="w-4 h-4 mr-1" />
-                    Code
-                  </Button>
-                )}
+              <div className="flex justify-between items-center">
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center">
+                    <Star className="w-4 h-4 text-yellow-500 mr-1" />
+                    <span>{stars}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <GitFork className="w-4 h-4 text-gray-500 mr-1" />
+                    <span>{forks}</span>
+                  </div>
+                </div>
                 {liveUrl && (
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-1" />
-                    Live
+                  <Button asChild size="sm">
+                    <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+                      Live Demo
+                    </a>
                   </Button>
                 )}
               </div>

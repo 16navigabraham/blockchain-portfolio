@@ -87,21 +87,16 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <div
-              className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center animate-pulse-glow transform hover:scale-110 transition-transform duration-500 cursor-pointer"
+              className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center animate-pulse-glow transform hover:scale-110 transition-transform duration-500"
               style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-              onClick={() => setShowPfp((prev) => !prev)} // TOGGLE ON CLICK
             >
-              {showPfp ? (
-                <Image
-                  src="/cat.png" // Replace with your actual image path in /public
-                  alt="Profile Picture"
-                  width={64}
-                  height={64}
-                  className="rounded-full w-16 h-16 object-cover"
-                />
-              ) : (
-                <Code className="w-16 h-16 text-white animate-bounce" />
-              )}
+              <Image
+                src="/cat.png"
+                alt="Profile Picture"
+                width={64}
+                height={64}
+                className="rounded-full w-16 h-16 object-cover"
+              />
             </div>
             <h1 className="text-6xl font-bold text-gray-900 mb-4 animate-fade-in-up gradient-text">Adebanjo Abraham</h1>
             <h2 className="text-3xl text-gray-600 mb-6 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -135,10 +130,29 @@ export default function Portfolio() {
                   href="https://github.com/16navigabraham"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center whitespace-nowrap"
                 >
-                  <Github className="w-4 h-4 mr-2" />
-                  View GitHub
+                  <Github className="w-4 h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">View GitHub</span>
+                  <span className="sm:hidden">GitHub</span>
                 </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="transform hover:scale-105 transition-all duration-300 hover:shadow-lg glow-border"
+              >
+                <a
+                  href="/Adebanjo_Abraham_CV.pdf" // Place your CV in the /public folder
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center whitespace-nowrap"
+                  >
+                  <span className="w-4 h-4 mr-2">📄</span>
+                  Download CV
+                </a>
               </Button>
             </div>
           </div>
@@ -281,7 +295,7 @@ export default function Portfolio() {
               description="Farcaster Mini-app"
               longDescription="Developed a decentralized mini application that allows users to easily create, share, and mint memes on Farcaster. Integrated a meme battle feature to drive user engagement and added NFT minting functionality for onchain ownership."
               technologies={["Solidity", "Typescript", "Pinata", "javascript", "OpenZeppelin","CSS","Node.js","Farcaster Mini-App Framework"]}
-              liveUrl="https://farcaster.xyz/miniapps/SE50u1CWD5fB/meme-vibe"
+              liveUrl="https://farcaster.xyz/miniapps/SE50u1CWD5fB/memevibe"
               stars={5}
               forks={5}
               image="/MV.png"
@@ -386,7 +400,7 @@ export default function Portfolio() {
             <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
             Currently seeking opportunities to leverage my expertise in smart contract development, DeFi protocols, and Web3 infrastructure. Open to discussing technical collaborations and innovative blockchain solutions.
             </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
             <div className="flex items-center transform hover:scale-105 transition-transform duration-300">
               <Mail className="w-5 h-5 text-blue-200 mr-2" />
               <span>Navigatorabraham@gmail.com</span>
