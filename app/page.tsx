@@ -206,7 +206,7 @@ export default function Portfolio() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <SiLinkedin className="w-4 h-4 mr-2" />
+                    <Linkedin className="w-4 h-4 mr-2" />
                     LinkedIn
                   </Link>
                 </Button>
@@ -216,7 +216,7 @@ export default function Portfolio() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <SiGithub className="w-4 h-4 mr-2" />
+                    <Github className="w-4 h-4 mr-2" />
                     GitHub
                   </Link>
                 </Button>
@@ -373,21 +373,11 @@ export default function Portfolio() {
           <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
             Currently seeking opportunities to leverage my expertise in smart contract development, DeFi protocols, and Web3 infrastructure. Open to discussing technical collaborations and innovative blockchain solutions.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-            <div className="flex items-center transform hover:scale-105 transition-transform duration-300">
-              <Mail className="w-5 h-5 text-blue-200 mr-2" />
-              <span>Navigatorabraham@gmail.com</span>
-            </div>
-            <div className="flex items-center transform hover:scale-105 transition-transform duration-300">
-              <MapPin className="w-5 h-5 text-blue-200 mr-2" />
-              <span>Akure, Nigeria</span>
-            </div>
-          </div>
-          <div className="flex justify-center space-x-4 mt-6">
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-6">
             <Button
               asChild
               size="lg"
-              className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300"
+              className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               <a href="mailto:Navigatorabraham@gmail.com">
                 <Mail className="w-4 h-4 mr-2" />
@@ -398,7 +388,7 @@ export default function Portfolio() {
               asChild
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300"
+              className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               <Link
                 href="https://github.com/16navigabraham"
@@ -413,7 +403,7 @@ export default function Portfolio() {
               asChild
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300"
+              className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               <Link
                 href="https://www.linkedin.com/in/adebanjo-abraham/"
