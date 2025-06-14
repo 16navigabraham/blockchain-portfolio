@@ -17,6 +17,7 @@ import {
   Calendar,
   MapPin,
   ChevronDown,
+  Menu, // <-- FIX: Add Menu import
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatedBackground } from "@/components/animated-background"
@@ -30,7 +31,7 @@ import Image from "next/image"
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0)
   const [activeSection, setActiveSection] = useState("About")
-  const [showPfp, setShowPfp] = useState(false) // NEW STATE
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Section refs
   const sectionIds = ["about", "skills", "projects", "experience", "contact"]
@@ -59,27 +60,41 @@ export default function Portfolio() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50 transition-all duration-300">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="font-bold text-xl gradient-text">Adebanjo Abraham</div>
-            <div className="hidden md:flex space-x-8">
-              {["About", "Skills", "Projects", "Experience", "Contact"].map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className={`text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative group
+        <div className="flex justify-between items-center h-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="font-bold text-xl gradient-text">Adebanjo Abraham</div>
+          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <Menu className="h-6 w-6" />
+          </button>
+          <div className="hidden md:flex space-x-8">
+            {["About", "Skills", "Projects", "Experience", "Contact"].map((item) => (
+              <Link
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className={`text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative group
                   ${activeSection === item ? "text-blue-800 font-bold" : ""}
                 `}
-                >
-                  {item}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-800 transition-all duration-300 group-hover:w-full
-                  ${activeSection === item ? "w-full" : "w-0"}
-                `}></span>
-                </Link>
-              ))}
-            </div>
+              >
+                {item}
+              </Link>
+            ))}
           </div>
         </div>
+        {mobileMenuOpen && (
+          <div className="absolute top-16 left-0 right-0 bg-white/80 backdrop-blur-md md:hidden p-4 border-b">
+            {["About", "Skills", "Projects", "Experience", "Contact"].map((item) => (
+              <Link
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block py-2 text-gray-600 hover:text-blue-600 transition-all duration-300
+                  ${activeSection === item ? "text-blue-800 font-bold" : ""}
+                `}
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -109,7 +124,7 @@ export default function Portfolio() {
               Focused on building decentralized applications with passion and expertise in blockchain development,
               smart contracts, and emerging Web3 technologies.
             </p>
-            <div className="flex justify-center space-x-4 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
               <Button
                 asChild
                 size="lg"
@@ -144,12 +159,12 @@ export default function Portfolio() {
                 className="transform hover:scale-105 transition-all duration-300 hover:shadow-lg glow-border"
               >
                 <a
-                  href="/Adebanjo_Abraham_CV.pdf" // Place your CV in the /public folder
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center whitespace-nowrap"
-                  >
+                  href="/Adebanjo_Abraham_CV.pdf"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center whitespace-nowrap"
+                >
                   <span className="w-4 h-4 mr-2">📄</span>
                   Download CV
                 </a>
@@ -187,23 +202,23 @@ export default function Portfolio() {
               <div className="flex space-x-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
                 <Button variant="outline" size="sm" className="transform hover:scale-105 transition-all duration-300">
                   <Link
-                     href="https://www.linkedin.com/in/adebanjo-abraham/"
+                    href="https://www.linkedin.com/in/adebanjo-abraham/"
                     target="_blank"
-                     rel="noopener noreferrer"
-                    >
-                  <Linkedin className="w-4 h-4 mr-2" />
-                  LinkedIn
+                    rel="noopener noreferrer"
+                  >
+                    <SiLinkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
                   </Link>
                 </Button>
                 <Button variant="outline" size="sm" className="transform hover:scale-105 transition-all duration-300">
                   <Link
-                     href="https://github.com/16navigabraham"
-                     target="_blank"
-                      rel="noopener noreferrer"
-                     > 
-                  <Github className="w-4 h-4 mr-2" />
-                  GitHub
-                   </Link>
+                    href="https://github.com/16navigabraham"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <SiGithub className="w-4 h-4 mr-2" />
+                    GitHub
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -222,13 +237,6 @@ export default function Portfolio() {
                   <div className="text-sm text-gray-600">Projects Delivered</div>
                 </CardContent>
               </Card>
-              {/* <Card className="hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
-                <CardContent className="p-6 text-center">
-                  <TrendingUp className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                  <AnimatedCounter end={10} prefix="$" suffix="M+" />
-                  <div className="text-sm text-gray-600">TVL Managed</div>
-                </CardContent>
-              </Card> */}
               <Card className="hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
                 <CardContent className="p-6 text-center">
                   <Shield className="w-8 h-8 text-red-600 mx-auto mb-2" />
@@ -277,7 +285,6 @@ export default function Portfolio() {
                 { name: "Next.js", level: 85 },
                 { name: "CSS", level: 85 },
                 { name: "HTML", level: 85 },
-
               ]}
               badges={["HTML", "Next.js", "TypeScript", "Node.js", "CSS", "javascript"]}
             />
@@ -300,24 +307,6 @@ export default function Portfolio() {
               forks={5}
               image="/MV.png"
             />
-
-            {/* <InteractiveProjectCard
-              title=""
-              description="Multi-chain NFT Trading Platform"
-              longDescription="Cross-chain NFT marketplace supporting Ethereum, Polygon, and BSC. Features include advanced filtering, auction system, and royalty management for creators."
-              technologies={["Solidity", "Next.js", "IPFS", "The Graph", "Moralis"]}
-              stars={189}
-              forks={45}
-            /> */}
-
-            {/* <InteractiveProjectCard
-              title="Yield Farming Protocol"
-              description="Automated Yield Optimization"
-              longDescription="Intelligent yield farming protocol that automatically optimizes returns across multiple DeFi platforms using advanced algorithms and risk management strategies."
-              technologies={["Solidity", "Foundry", "TypeScript", "Chainlink", "javascript"]}
-              stars={156}
-              forks={32}
-            /> */}
           </div>
         </div>
       </section>
@@ -336,22 +325,6 @@ export default function Portfolio() {
                   "Lead development of a farcaster mini-app for meme creation and sharing. Implemented NFT minting and meme battle features to enhance user engagement.",
                 badges: ["Solidity", "DeFi", "Smart Contracts", "Team Leadership"],
               },
-              // {
-              //   title: "Blockchain Developer",
-              //   company: "CryptoTech Solutions",
-              //   period: "2020 - 2022",
-              //   description:
-              //     "Developed NFT marketplaces and gaming platforms. Implemented cross-chain bridges and optimized gas efficiency for high-volume applications.",
-              //   badges: ["NFTs", "Cross-chain", "Gaming", "Gas Optimization"],
-              // },
-              // {
-              //   title: "Full Stack Developer",
-              //   company: "Web3 Startup",
-              //   period: "2019 - 2020",
-              //   description:
-              //     "Built the foundation of Web3 knowledge while developing traditional web applications. Transitioned to blockchain development and smart contract programming.",
-              //   badges: ["React", "Node.js", "Web3 Integration", "Learning"],
-              // },
             ].map((job, index) => (
               <Card
                 key={index}
@@ -397,9 +370,9 @@ export default function Portfolio() {
       >
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8">Let's Build the Future Together</h2>
-            <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
             Currently seeking opportunities to leverage my expertise in smart contract development, DeFi protocols, and Web3 infrastructure. Open to discussing technical collaborations and innovative blockchain solutions.
-            </p>
+          </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
             <div className="flex items-center transform hover:scale-105 transition-transform duration-300">
               <Mail className="w-5 h-5 text-blue-200 mr-2" />
@@ -410,7 +383,7 @@ export default function Portfolio() {
               <span>Akure, Nigeria</span>
             </div>
           </div>
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-4 mt-6">
             <Button
               asChild
               size="lg"
@@ -458,7 +431,7 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
-          <p>&copy; {new Date().getFullYear()} Adebanjo Abraham. </p>
+          <p>&copy; {new Date().getFullYear()} Adebanjo Abraham. All rights reserved.</p>
         </div>
       </footer>
     </div>
