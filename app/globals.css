@@ -66,6 +66,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  .gradient-text {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-border {
+    box-shadow: 0 0 8px 2px #2563eb, 0 0 16px 4px #1e40af;
+    border: 2px solid #2563eb;
+  }
 }
 
 /* Custom animations */
@@ -120,6 +130,17 @@
   }
 }
 
+/* Example: Add a blue glow animation for your pfp */
+@keyframes blue-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 16px 4px #2563eb;
+  }
+  50% {
+    box-shadow: 0 0 32px 8px #1e40af;
+  }
+}
+
 .animate-float-slow {
   animation: float-slow 6s ease-in-out infinite;
 }
@@ -141,6 +162,12 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+.pfp-glow {
+  animation: blue-glow 2s infinite alternate;
+  border-radius: 9999px;
+  border: 3px solid #2563eb;
+}
+
 .perspective-1000 {
   perspective: 1000px;
 }
@@ -160,14 +187,6 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 /* Glowing border effect */

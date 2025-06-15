@@ -17,7 +17,8 @@ import {
   Calendar,
   MapPin,
   ChevronDown,
-  Menu, // <-- FIX: Add Menu import
+  Menu,
+  X, // <-- FIX: Add Menu import
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatedBackground } from "@/components/animated-background"
@@ -39,14 +40,15 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-      // Find the section currently in view
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const ref = document.getElementById(sectionIds[i])
         if (ref && window.scrollY + 80 >= ref.offsetTop) {
           setActiveSection(sectionIds[i].charAt(0).toUpperCase() + sectionIds[i].slice(1))
           break
         }
+      }
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
+        setActiveSection("Contact");
       }
     }
     window.addEventListener("scroll", handleScroll)
@@ -70,7 +72,7 @@ export default function Portfolio() {
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative group
+                className={`text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 relative
                   ${activeSection === item ? "text-blue-800 font-bold" : ""}
                 `}
               >
@@ -226,7 +228,7 @@ export default function Portfolio() {
               <Card className="hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
                 <CardContent className="p-6 text-center">
                   <Coins className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                  <AnimatedCounter end={50} suffix="+" />
+                  <AnimatedCounter end={5} suffix="+" />
                   <div className="text-sm text-gray-600">Smart Contracts</div>
                 </CardContent>
               </Card>
@@ -260,9 +262,9 @@ export default function Portfolio() {
               skills={[
                 { name: "Solidity", level: 95 },
                 { name: "Ethereum", level: 90 },
-                { name: "Smart Contracts", level: 92 },
+                { name: "Foundry", level: 45 },
               ]}
-              badges={["Solidity", "Ethereum", "Polygon", "Base", "Arbitrum", "Optimism"]}
+              badges={["Solidity", "Ethereum", "Polygon", "Base", "Arbitrum", "Optimism","ZkSync"]}
             />
 
             <InteractiveSkillCard
@@ -280,8 +282,8 @@ export default function Portfolio() {
               title="Frontend & Tools"
               icon={<Zap className="w-5 h-5 text-purple-600" />}
               skills={[
-                { name: "javascript", level: 92 },
-                { name: "TypeScript", level: 88 },
+                { name: "javascript", level: 45 },
+                { name: "TypeScript", level: 45 },
                 { name: "Next.js", level: 85 },
                 { name: "CSS", level: 85 },
                 { name: "HTML", level: 85 },
@@ -386,33 +388,45 @@ export default function Portfolio() {
             </Button>
             <Button
               asChild
-              variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
-              <Link
+              <a
                 href="https://github.com/16navigabraham"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Github className="w-4 h-4 mr-2" />
                 GitHub
-              </Link>
+              </a>
             </Button>
             <Button
               asChild
-              variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
-              <Link
+              <a
                 href="https://www.linkedin.com/in/adebanjo-abraham/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Linkedin className="w-4 h-4 mr-2" />
                 LinkedIn
-              </Link>
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+            >
+              <a
+              href="https://x.com/AbrahamNAVIG1"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              <X className="w-4 h-4 mr-2" />
+             X (formerly Twitter)
+              </a>
             </Button>
           </div>
         </div>
