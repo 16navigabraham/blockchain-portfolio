@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-export const metadata: Metadata = {
-  title: 'Adebanjo Abraham | Blockchain Developer',
-  description: 'Adebanjo Abraham - Blockchain & Web3 Developer. Coding is logical.',
-}
+// export const metadata: Metadata = {
+//   title: 'Adebanjo Abraham | Blockchain Developer',
+//   description: 'Adebanjo Abraham - Blockchain & Web3 Developer. Coding is logical.',
+// }
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
+  return ( 
     <html lang="en">
       <head>
         <title>Adebanjo Abraham | Blockchain Developer</title>
